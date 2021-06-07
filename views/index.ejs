@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Muli:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>To-Do List</title>
+    <style>
+
+        :root {
+            --date-bg : #126e82;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: "Roboto", sans-serif;
+        }
+
+        .container {
+            margin-top: 30px;
+            border-radius: 5px;
+            width: 500px;
+            min-height: 25vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            box-shadow:10px 10px 15px -5px #cac9c9;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        .input {
+            margin-bottom: 20px;
+            display: flex;
+
+        }
+
+        
+
+        input {
+            font-size: 30px;
+            border: none;
+            border-bottom: 2px solid var(--date-bg);
+            outline: none;
+        }
+
+        input:focus {
+            border-color: gray;
+        }
+
+        .heading {
+            margin-top: 15px;
+            width: 90%;
+            background-color: var(--date-bg);
+            border-radius: 5px;
+            text-align: center;
+            color: white;
+            padding: 5px;
+            box-shadow: 5px 5px 15px -5px #cac9c9;
+        }
+
+
+        .btn {
+            cursor: pointer;
+            height: 45px;
+            width: 45px;
+            font-size: 20px;
+            margin-left: 10px;
+            border: none;
+            background-color: var(--date-bg);
+            color: white;
+            border-radius: 50%;
+            transition: .4s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.2);
+        }
+
+        .items {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px;
+            width: 90%;
+            margin-top: 40px;
+        }
+
+        .item {
+            text-align: center;
+            position: relative;
+            box-shadow: 5px 5px 15px -5px #cac9c9;
+            width: 100%;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: .5s ease;
+            border: 2px solid transparent;
+        }
+
+        .check {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 10px;
+            color: var(--date-bg);
+        }
+
+        input:checked + h2 {
+            text-decoration: line-through;
+            text-decoration-color: var(--date-bg);
+        }
+
+        .item:hover {
+            transform: scale(1.03);
+            border: 2px solid var(--date-bg);
+        }
+
+        h2 {
+            margin: 0 15px;
+            word-wrap: break-word;
+            font-family: "Muli", sans-serif;
+            font-weight: 300;
+        }
+
+        @media(max-width:400px) {
+            .container {
+                width: 90vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="heading">
+            <h1> <%= currentDate %> </h1>
+        </div>
+        <div class="items">
+            <% for(let i=0;i<data.length;i++) { %>
+                <% if(data[i]=="") continue; %>
+                <div class="item">
+                    <input type="checkbox" class="check">
+                    <h2> <%= data[i] %> </h2>
+                </div>
+            <% } %>
+        </div>
+        <div class="input">
+            <form action="/" method="POST">
+                
+                    <input type="text" name="task" autocomplete="off">
+                    <button class="btn" type="submit"><i class="fas fa-plus"></i></button>
+                
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
